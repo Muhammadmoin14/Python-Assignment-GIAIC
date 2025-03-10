@@ -8,6 +8,7 @@ st.title("Data Analysis With Graphs")
 st.write("Upload your data file to analyze the data and get insights")
 uploaded_file = st.file_uploader("Choose a file",type=['csv','xlsx'],accept_multiple_files=True)
 
+
 # if uploaded_file is not None:
 #     # Load data
 #     if uploaded_file.name.endswith('.csv'):

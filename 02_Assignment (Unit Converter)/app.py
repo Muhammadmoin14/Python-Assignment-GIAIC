@@ -31,12 +31,18 @@ def Conversion (Category_Selected, value , unit_from, unit_to):
     except:
         return 'Invalid Input'
     
+    # If the units are the same, return the value
+    if unit_from == unit_to:
+        return value
+    
     if Category_Selected == 'Length':
-        if (unit_from == 'Meter' and unit_to == 'Kilometer') and (unit_from == 'Milimeter' and unit_to == 'Meter'):
+        if unit_from == 'Meter' and unit_to == 'Kilometer':
             return value / 1000
         elif unit_from == 'Meter' and unit_to == 'Centimeter':
             return value * 100
-        elif (unit_from == 'Meter' and unit_to == 'Millimeter')and (unit_from == 'Kilometer' and unit_to == 'Meter'):
+        elif unit_from == 'Meter' and unit_to == 'Millimeter':
+            return value * 1000
+        elif unit_from == 'Kilometer' and unit_to == 'Meter':
             return value * 1000
         elif unit_from == 'Kilometer' and unit_to == 'Centimeter':
             return value * 100000
@@ -48,8 +54,12 @@ def Conversion (Category_Selected, value , unit_from, unit_to):
             return value / 100000
         elif unit_from == 'Centimeter' and unit_to == 'Millimeter':
             return value * 10
+        elif unit_from == 'Millimeter' and unit_to == 'Meter':
+            return value / 1000
         elif unit_from == 'Millimeter' and unit_to == 'Kilometer':
             return value / 1000000
+        elif unit_from == 'Millimeter' and unit_to == 'Centimeter':
+            return value / 10
     elif Category_Selected == 'Temperature':
         if unit_from == 'Celsius' and unit_to == 'Fahrenheit':
             return (value * 9/5) + 32
@@ -81,8 +91,13 @@ def Conversion (Category_Selected, value , unit_from, unit_to):
         elif unit_from == 'Milligram' and unit_to == 'Gram':
             return value / 1000
         elif unit_from == 'Milligram' and unit_to == 'Pound':
-            return value / 453592000
-
+            return value / 453592
+        elif unit_from == 'Pound' and unit_to == 'Kilogram':
+            return value / 2.20462
+        elif unit_from == 'Pound' and unit_to == 'Gram':
+            return value * 453.592
+        elif unit_from == 'Pound' and unit_to == 'Milligram':
+            return value * 453592
     elif Category_Selected == 'Volume':
         if unit_from == 'Liter' and unit_to == 'Milliliter':
             return value * 1000
@@ -96,7 +111,9 @@ def Conversion (Category_Selected, value , unit_from, unit_to):
             return value * 3.78541
         elif unit_from == 'Gallon' and unit_to == 'Milliliter':
             return value * 3785.41
-        
+    
+    # If no conversion was found, return a message
+    return f"Conversion from {unit_from} to {unit_to} is not supported"
 
 if st.button('Convert'):
     result = Conversion(Category_Selected, value, unit_from, unit_to)
