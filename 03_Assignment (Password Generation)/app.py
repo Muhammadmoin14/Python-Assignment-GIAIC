@@ -40,9 +40,9 @@ def check_password_strength(password):
     else:
         return "❌ Include at least one special character (!@#$%^&*)."
     
-    if score >= 3:
+    if score >= 6:
         return "✅ Strong Password!"
-    elif score == 2:
+    elif score >=4 :
         suggested = suggest_strongpassword()
         return f"⚠️ Moderate Password - Consider adding more security features.\nSuggested strong password: {suggested}"
     else:
@@ -51,9 +51,11 @@ def check_password_strength(password):
 
 
 def suggest_strongpassword():
-    length = 12
-    characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
-    password = ''.join(random.choice(characters) for _ in range(length))
+    length = 4
+    characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    digits= '0123456789'
+    specialchar = '@#$%^&*'
+    password = ''.join(random.choice(characters)+random.choice(digits)+random.choice(specialchar) for _ in range(length))
     return password
 
 def main():
