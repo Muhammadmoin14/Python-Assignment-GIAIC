@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import os 
 import seaborn as sns
 
 st.set_page_config(page_title="Data Analysis", page_icon=":bar_chart:", layout="wide")
